@@ -11,7 +11,7 @@
         {{#paper-item class="md-3-line" }}
           <div class="md-list-item-text">
             <p>
-              <h3>{{food.name}}!</h3>
+              <h3 class="active">{{food.name}}!</h3>
               {{#paper-button onClick=(action "makeUnavailable" food)}}Make Unavailable{{/paper-button}}
               {{#paper-button onClick=(action "destroyItem" food)}}Destroy{{/paper-button}}
             </p>
@@ -21,7 +21,7 @@
         {{#paper-item class="md-3-line" }}
           <div class="md-list-item-text">
             <p>
-              <h3><s>{{food.name}}!</s></h3>
+              <h3 class="not-active"><s>{{food.name}}!</s></h3>
               {{#paper-button onClick=(action "makeAvailable" food)}}Make Available{{/paper-button}}
               {{#paper-button onClick=(action "destroyItem" food)}}Destroy{{/paper-button}}
             </p>
@@ -37,5 +37,6 @@
 {{#paper-button onClick=(action "saveNewItem")}}Save{{/paper-button}}
 
 <h3>{{model.length}} foods total</h3>
+<h3>{{availableItem.length}} foods available</h3>
 
 {{paper-progress-linear}}
