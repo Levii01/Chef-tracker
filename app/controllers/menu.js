@@ -13,12 +13,16 @@ export default Ember.Controller.extend({
       food.save();
     },
 
-    saveNewItem(){
+    saveNewItem() {
       this.store.createRecord('chef', {
         available: false,
         name: this.get('newItem')
       }).save()
       this.set('newItem', '')
+    },
+
+    destroyItem(food) {
+      food.destroyRecord();
     }
   }
 });

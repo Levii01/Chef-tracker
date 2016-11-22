@@ -1,45 +1,41 @@
-{{outlet}}
+{{outlet}} <br><br>{{paper-progress-linear}}
 <h1>Menu Tracker</h1>
 <p>Menu Tracker helps you see what dishes are available today,</p>
 
-<ul>
-  {{#each model as |food|}}
-    {{#if food.available}}
-      <li class={{if food.available 'available' 'out_of_stock'}}> {{food.name}}!
-        <button {{action 'makeUnavailable' food}}> Make Unavailable </button>
-      </li>
-    {{else}}
-      <li class={{if food.available 'available' 'out_of_stock'}}><s> {{food.name}}!</s>
-        <button {{action 'makeAvailable' food}}> Make Available </button>
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
-{{input value=newItem}}
-{{#paper-button onClick=(action "saveNewItem")}}Save{{/paper-button}}
 
-{{#paper-content class="md-whiteframe-z1 list-demo"}}
+
+{{#paper-content class="md-whiteframe-z1 list-demo" }}
   {{#paper-list}}
     {{#each model as |food|}}
       {{#if food.available}}
-        {{#paper-item class="md-3-line"}}
-            <div class="md-list-item-text">
-                <p>
-                  <h3>{{food.name}}!</h3>
-                  {{#paper-button onClick=(action "makeUnavailable" food)}}Make Unavailable{{/paper-button}}
-                </p>
-            </div>
+        {{#paper-item class="md-3-line" }}
+          <div class="md-list-item-text">
+            <p>
+              <h3>{{food.name}}!</h3>
+              {{#paper-button onClick=(action "makeUnavailable" food)}}Make Unavailable{{/paper-button}}
+              {{#paper-button onClick=(action "destroyItem" food)}}Destroy{{/paper-button}}
+            </p>
+          </div>
         {{/paper-item}}
       {{else}}
-        {{#paper-item class="md-3-line"}}
-            <div class="md-list-item-text">
-                <p>
-                  <h3><s>{{food.name}}!</s></h3>
-                  {{#paper-button onClick=(action "makeAvailable" food)}}Make Available{{/paper-button}}
-                </p>
-            </div>
+        {{#paper-item class="md-3-line" }}
+          <div class="md-list-item-text">
+            <p>
+              <h3><s>{{food.name}}!</s></h3>
+              {{#paper-button onClick=(action "makeAvailable" food)}}Make Available{{/paper-button}}
+              {{#paper-button onClick=(action "destroyItem" food)}}Destroy{{/paper-button}}
+            </p>
+          </div>
         {{/paper-item}}
       {{/if}}
     {{/each}}
   {{/paper-list}}
 {{/paper-content}}
+
+{{paper-input label="New Item" value=newItem onChange=(action (mut newItem))}}
+
+{{#paper-button onClick=(action "saveNewItem")}}Save{{/paper-button}}
+
+<h3>{{model.length}} foods total</h3>
+
+{{paper-progress-linear}}
