@@ -14,6 +14,9 @@
               <h3 class="active">{{food.name}}!</h3>
               {{#paper-button onClick=(action "makeUnavailable" food)}}Make Unavailable{{/paper-button}}
               {{#paper-button onClick=(action "destroyItem" food)}}Destroy{{/paper-button}}
+              <button {{action addLike food}}>+</button>
+                {{food.likes}}
+              <button {{action disLike food}}> -- </button>
             </p>
           </div>
         {{/paper-item}}
@@ -37,6 +40,4 @@
 {{#paper-button onClick=(action "saveNewItem")}}Save{{/paper-button}}
 
 <h3>{{model.length}} foods total</h3>
-<h3>{{availableItem.length}} foods available</h3>
-
-{{paper-progress-linear}}
+<h3>{{availableItem.length}} foods available</h3> {{paper-progress-linear}}
