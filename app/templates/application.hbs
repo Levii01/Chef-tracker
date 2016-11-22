@@ -1,0 +1,16 @@
+{{! with contextual components }}
+{{#paper-toolbar as |toolbar|}}
+   {{#toolbar.tools}}
+     <h3>Chef Trucker</h3>
+     <span class="flex"></span>
+   {{/toolbar.tools}}
+ {{/paper-toolbar}}
+
+<h1 style="color: orange;"> {{greeting}}</h1>
+{{yourName}}
+<p>Is your favorite chef cooking right now?</p>
+<p>Find out with <strong>Chef Tracker</strong>, the hot</p>
+
+{{input value=yourName}}
+
+ {{outlet}}

@@ -1,8 +1,8 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
-    modulePrefix: 'ember-school-project-1',
+    modulePrefix: 'Chef-Tracker',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
@@ -13,13 +13,21 @@ module.exports = function(environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    firebase:{
+      apiKey: "AIzaSyC-_YDQZP6SahrZOpT-G-LqMYO8wA6hqhg",
+      authDomain: "trackerchef-b497c.firebaseapp.com",
+      databaseURL: "https://trackerchef-b497c.firebaseio.com",
+      storageBucket: "trackerchef-b497c.appspot.com",
+      messagingSenderId: "526439561600"
     }
   };
 
