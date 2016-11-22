@@ -3,37 +3,34 @@
 <p>Menu Tracker helps you see what dishes are available today,</p>
 
 
+{{#paper-list}}
+  {{#each model as |food|}}
+    {{#if food.available}}
+      {{#paper-item class="md-3-line" }}
+        <div class="md-list-item-text">
+          <p>
+            <p>
+              <h3 class="active">{{food.name}}!</h3></p>
+            {{#paper-button onClick=(action "makeUnavailable" food)}}Make Unavailable{{/paper-button}}
+            {{#paper-button onClick=(action "destroyItem" food)}}Destroy{{/paper-button}}
+            {{increment-decrement-property food=food}}
+          </p>
+        </div>
+      {{/paper-item}}
+    {{else}}
+      {{#paper-item class="md-3-line" }}
+        <div class="md-list-item-text">
+          <p>
+            <h3 class="not-active"><s>{{food.name}}!</s></h3>
+            {{#paper-button onClick=(action "makeAvailable" food)}}Make Available{{/paper-button}}
+            {{#paper-button onClick=(action "destroyItem" food)}}Destroy{{/paper-button}}
+          </p>
+        </div>
+      {{/paper-item}}
+    {{/if}}
+  {{/each}}
+{{/paper-list}}
 
-{{#paper-content class="md-whiteframe-z1 list-demo" }}
-  {{#paper-list}}
-    {{#each model as |food|}}
-      {{#if food.available}}
-        {{#paper-item class="md-3-line" }}
-          <div class="md-list-item-text">
-            <p>
-              <h3 class="active">{{food.name}}!</h3>
-              {{#paper-button onClick=(action "makeUnavailable" food)}}Make Unavailable{{/paper-button}}
-              {{#paper-button onClick=(action "destroyItem" food)}}Destroy{{/paper-button}}
-              <button {{action addLike food}}>+</button>
-                {{food.likes}}
-              <button {{action disLike food}}> -- </button>
-            </p>
-          </div>
-        {{/paper-item}}
-      {{else}}
-        {{#paper-item class="md-3-line" }}
-          <div class="md-list-item-text">
-            <p>
-              <h3 class="not-active"><s>{{food.name}}!</s></h3>
-              {{#paper-button onClick=(action "makeAvailable" food)}}Make Available{{/paper-button}}
-              {{#paper-button onClick=(action "destroyItem" food)}}Destroy{{/paper-button}}
-            </p>
-          </div>
-        {{/paper-item}}
-      {{/if}}
-    {{/each}}
-  {{/paper-list}}
-{{/paper-content}}
 
 {{paper-input label="New Item" value=newItem onChange=(action (mut newItem))}}
 
