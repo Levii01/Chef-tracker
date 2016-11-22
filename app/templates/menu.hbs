@@ -15,6 +15,8 @@
     {{/if}}
   {{/each}}
 </ul>
+{{input value=newItem}}
+{{#paper-button onClick=(action "saveNewItem")}}Save{{/paper-button}}
 
 {{#paper-content class="md-whiteframe-z1 list-demo"}}
   {{#paper-list}}
@@ -22,15 +24,19 @@
       {{#if food.available}}
         {{#paper-item class="md-3-line"}}
             <div class="md-list-item-text">
-                <h3>{{food.name}}!</h3>
-                <h3{{action 'makeUnavailable' food}}> Make Unavailable </h3>
+                <p>
+                  <h3>{{food.name}}!</h3>
+                  {{#paper-button onClick=(action "makeUnavailable" food)}}Make Unavailable{{/paper-button}}
+                </p>
             </div>
         {{/paper-item}}
       {{else}}
         {{#paper-item class="md-3-line"}}
-            <div {{action 'makeAvailable' food}} class="md-list-item-text">
-                <h3><s>{{food.name}}!</s></h3>
-                <h3> Make Available </h3>
+            <div class="md-list-item-text">
+                <p>
+                  <h3><s>{{food.name}}!</s></h3>
+                  {{#paper-button onClick=(action "makeAvailable" food)}}Make Available{{/paper-button}}
+                </p>
             </div>
         {{/paper-item}}
       {{/if}}
