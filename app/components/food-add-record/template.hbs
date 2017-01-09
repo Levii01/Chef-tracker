@@ -1,0 +1,3 @@
+{{paper-input label="New Item" value=newItem onChange=(action (mut newItem))}}
+{{#paper-button onClick=(action "saveNewItem" newItem)}}Save{{/paper-button}}
+{{yield}}
